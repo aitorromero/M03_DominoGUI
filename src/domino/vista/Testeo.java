@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
+import javax.swing.border.Border;
 
 public class Testeo extends JFrame implements ActionListener {
 
@@ -22,6 +23,7 @@ public class Testeo extends JFrame implements ActionListener {
     private JLabel labelJugador1, labelJugador2, labelJugador3, labelJugador4, labelAux;
     private JButton x1, x2, x3, x4, x5, x6, x7, x8, x9;
     private JPanel panelTablero, panelFichasJ1, panelFichasJ2, panelFichasJ3, panelFichasJ4;
+    private Border borde;
 
     public Testeo() throws HeadlessException {
         configuracio();
@@ -53,45 +55,37 @@ public class Testeo extends JFrame implements ActionListener {
         subMenuJugadors.add(menuItemEstablirQuatreJugadors);
 
         menuBar = new JMenuBar();
-        menuBar.add(menuConfiguracio);
-        
+        menuBar.add(menuConfiguracio);        
         this.getContentPane().setLayout(new BorderLayout());
-
-        //Labels con el nombre de los jugadores
-        /*labelJugador1 = new JLabel("Jugador1", JLabel.CENTER);
-        add(labelJugador1, BorderLayout.NORTH);
-        labelJugador2 = new JLabel("Jugador2");
-        add(labelJugador2, BorderLayout.EAST);
-        labelJugador3 = new JLabel("Jugador3", JLabel.CENTER);
-        add(labelJugador3, BorderLayout.SOUTH);
-        labelJugador4 = new JLabel("Jugador4");
-        add(labelJugador4, BorderLayout.WEST);*/
         
+        //Declaracion de los paneles
         panelFichasJ1 = new JPanel();
         panelFichasJ2 = new JPanel();
         panelFichasJ3 = new JPanel();
         panelFichasJ4 = new JPanel();
         panelTablero = new JPanel();
         
+        //Ordenacion de los paneles en norte, sur, este, oeste y centro
         this.getContentPane().add(this.panelFichasJ1, BorderLayout.SOUTH);
         this.getContentPane().add(this.panelFichasJ2, BorderLayout.WEST);
         this.getContentPane().add(this.panelFichasJ3, BorderLayout.NORTH);
         this.getContentPane().add(this.panelFichasJ4, BorderLayout.EAST);
         this.getContentPane().add(this.panelTablero, BorderLayout.CENTER);
+        
+        //Redimension de los paneles para ajustarlos al tamaño deseado
         panelFichasJ1.setPreferredSize(new Dimension(150,80));
         panelFichasJ2.setPreferredSize(new Dimension(80,150));
         panelFichasJ3.setPreferredSize(new Dimension(150,80));
         panelFichasJ4.setPreferredSize(new Dimension(80,150));
         
-        panelFichasJ1.setBackground(Color.blue);
-        panelTablero.setBackground(Color.red);
-        /*
-        labelAux=new JLabel("CENTRO?");
-        labelAux.setHorizontalAlignment(JLabel.CENTER);
-        add(labelAux, BorderLayout.CENTER);
-         */
-        
-        
+        //Declaracion de los bordes de cada uno de nuestros paneles
+        borde = BorderFactory.createLineBorder(Color.black);        
+        panelFichasJ1.setBorder(borde);
+        panelFichasJ2.setBorder(borde);
+        panelFichasJ3.setBorder(borde);
+        panelFichasJ4.setBorder(borde);
+        panelTablero.setBorder(borde);
+           
         this.setJMenuBar(menuBar);
     }
     
@@ -127,14 +121,20 @@ public class Testeo extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         String action = e.getActionCommand();
-        /*
+        
         switch (action) {
-            case "Canviar imatge":
-                carregarImatge();
+            case "2 Jugadors":
+                trabajandoEnEllo();
+                break;
+            case "3 Jugadors":
+                trabajandoEnEllo();
+                break;
+            case "4 Jugadors":
+                introducirNombres();
                 break;
             case "Canviar color":
                 break;
-        }*/
+        }
     }
 
     public static void main(String[] args) {
@@ -162,4 +162,13 @@ public class Testeo extends JFrame implements ActionListener {
         }
 
     }*/
+    
+    public String introducirNombres(){
+        String nom = JOptionPane.showInputDialog(null, "Introdueix el nom del jugador", "Nom Jugador", 1);
+        return nom;
+    }
+    
+    public void trabajandoEnEllo(){
+        JOptionPane.showMessageDialog(null, "Trabajando en ello. Intenta con 4 jugadores");
+    }
 }

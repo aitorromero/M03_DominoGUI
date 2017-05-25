@@ -4,7 +4,7 @@ import domino.model.Fitxa;
 import domino.model.Joc;
 import domino.model.Jugador;
 import domino.model.Torn;
-import domino.vista.VistaText;
+import domino.vista.*;
 
 public class ControlText {
 
@@ -14,6 +14,7 @@ public class ControlText {
     private Torn torn;
     private Jugador jug;
     private Fitxa fitxa;
+    private Testeo testeo;
 
     /**
      * Inicialitzem el constructor amb el numero de jugadors, les fitxes, i
@@ -33,7 +34,7 @@ public class ControlText {
      * jugador, el menu i actualitza l'estat Un cop acabar mostra el guanyador.
      */
     public void inici() {
-        joc.iniciar(new String[]{"J1", "J2", "J3", "J4"});
+        joc.iniciar(almacenarNombres());
         torn.inicial();
         joc.torn = joc.getTorn();
         joc.actualitzarEstat();
@@ -148,4 +149,13 @@ public class ControlText {
         }
         return comprobacio;
     }
+
+    public String [] almacenarNombres() {
+        String[] nom = null;
+        for (int i = 0; i < 4; i++) {
+            nom[i] = testeo.introducirNombres();
+        }
+        return nom;
+    }
+
 }
